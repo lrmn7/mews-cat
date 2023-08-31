@@ -48,7 +48,7 @@ Setelah DailyCAT berada di servermu, ia akan secara otomatis mengirimkan gambar 
 * Website: https://lrmn.is-a.dev
 * Github: [@lrmn7](https://github.com/lrmn7)
 
-## Author API CAT
+## Thanks to
 
 * Website: https://cataas.com/
 
