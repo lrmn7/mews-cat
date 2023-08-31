@@ -93,7 +93,7 @@ client.on(Events.ClientReady, (client) => {
   }
 
   client.user.setPresence({
-    activities: [{ name: 'your spirit ❤️‍🔥', type: ActivityType.Watching }],
+    activities: [{ name: 'Meoooow', type: ActivityType.Watching }],
     status: 'idle',
   });
 });
@@ -158,18 +158,20 @@ cron.schedule(
     const currentHour = new Date().getHours();
 
     let greeting = "";
-    if (currentHour >= 8 && currentHour < 16) {
+    if (currentHour === 8) {
       greeting = "Semangat yaaa";
-    } else if (currentHour >= 16 && currentHour < 21) {
+    } else if (currentHour === 16) {
       greeting = "Bahagia terus yaaa";
-    } else {
+    } else if (currentHour === 21) {
       greeting = "Jangan lupa istirahat yaaa";
     }
 
-    const message = `${greeting}! pap ini untukmu, semangat yaaaa 💗`;
+    if (greeting !== "") {
+      const message = `${greeting}! Meooow for u 💗`;
 
-    for (const channel of channels) {
-      await channel.send({ content: message, files: [attachment] });
+      for (const channel of channels) {
+        await channel.send({ content: message, files: [attachment] });
+      }
     }
   },
   {
