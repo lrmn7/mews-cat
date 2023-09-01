@@ -166,12 +166,10 @@ cron.schedule(
       greeting = "Jangan lupa istirahat yaaa";
     }
 
-    if (greeting !== "") {
       const message = `${greeting}! Meooow for u 💗`;
 
-      for (const channel of channels) {
-        await channel.send({ content: message, files: [attachment] });
-      }
+    for (const channel of channels) {
+      await channel.send({ content: message, files: [attachment] });
     }
   },
   {
