@@ -1,3 +1,8 @@
+<div align="center">
+  <img height="150" src="https://cdn.discordapp.com/attachments/1098969636306960465/1147515962183127081/dailycats.png"/>
+</div>
+
+
 <h1 align="center">🐱 DailyCAT Bot Discord 🐾</h1>
 <p align="center">
   <img alt="Versi" src="https://img.shields.io/badge/versi-1.0.0-blue.svg?cacheSeconds=2592000" />
@@ -61,5 +66,5 @@ Beri ⭐️ jika proyek ini membantumu!
 </a>
 
 <div align="center">
-  <img width="80%" src="https://cdn.discordapp.com/attachments/1098969636306960465/1145682147282264114/Screenshot_2023-08-28_183323.png">
+  <img width="80%" src="https://cdn.discordapp.com/attachments/1098969636306960465/1147516305587576872/Screenshot_2023-09-02_200149.png">
 </div> 
