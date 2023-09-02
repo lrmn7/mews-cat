@@ -159,17 +159,21 @@ cron.schedule(
 
     let greeting = "";
     if (currentHour === 8) {
-      greeting = "Semangat yaaa";
+      greeting = "Semangat!";
     } else if (currentHour === 16) {
-      greeting = "Bahagia terus yaaa";
+      greeting = "Selalu bahagia!";
     } else if (currentHour === 21) {
-      greeting = "Jangan lupa istirahat yaaa";
+      greeting = "Jangan lupa istirahat!";
     }
 
-    const message = `${greeting}! Meooow for u 💗`;
+    const message = `${greeting} Meooow for u 💗`;
 
     for (const channel of channels) {
-      await channel.send({ content: message, files: [attachment] });
+      try {
+        await channel.send({ content: message, files: [attachment] });
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
     }
   },
   {
