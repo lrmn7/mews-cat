@@ -67,7 +67,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         })
         .setTimestamp();
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], ephemeral: false });
       } catch (error) {
         console.error(error);
         await interaction.followUp("Maaf aku sedang sibuk, nanti balik lagi ya.");
