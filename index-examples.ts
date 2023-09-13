@@ -38,10 +38,17 @@ client.on(Events.InteractionCreate, async (interaction) => {
       try {
         await interaction.deferReply();
 
-        const attachment = await getRandomCatAttachmentBuilder();
+        const [imageAttachment, fact] = await Promise.all([
+          getRandomCatAttachmentBuilder(),
+          fetch('https://catfact.ninja/fact')
+            .then(response => response.json())
+            .then(data => data.fact)
+            .catch(() => 'Unable to fetch a cat fact at the moment.')
+        ]);
 
         interaction.editReply({
-          files: [attachment],
+          content: `**cat fact**\n\n${fact}`,
+          files: [imageAttachment],
         });
       } catch (error) {
         console.error(error);
@@ -57,8 +64,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
         })
         .setTitle("Ayo Main dengan DailyCAT!")
         .setURL("https://dailycat.is-a.fun/")
-        .setDescription("Aku adalah bot yang suka mengirimkan gambar kucing lucu kepadamu. Berikut adalah beberapa perintah yang bisa kamu gunakan:\n\n`Perintah`  **DailyCAT**\n\nKetik `/cat ` untuk mendapatkan gambar kucing acak.\nKetik `/guide` untuk menampilkan panduan ini.\nJangan lupa untuk membuat teks channel `#daily-cat` agar aku bisa secara otomatis mengirimkan pap \nuntukmu setiap hari-nya 💗\n\nAyo bersenang-senang denganku 😺\n\n\n> [Website](https://dailycat.is-a.fun)  |  [Server Support](https://discord.gg/WFfjrQxnfH) | [Author](https://lrmn.is-a.dev) \n\n> [Privacy Policy](https://dailycat.is-a.fun/privacy)  |  [Terms Of Service](https://dailycat.is-a.fun/terms) | [Legal Notice](https://dailycat.is-a.fun/legal)")
-        .setImage("https://cdn.discordapp.com/attachments/1135599418356281364/1151272050221142127/wecome_to_aromax_development.png")
+        .setDescription("Aku adalah bot yang suka mengirimkan gambar kucing lucu kepadamu. Berikut adalah beberapa perintah yang bisa kamu gunakan:\n\n`Perintah`  **DailyCAT**\n\nKetik `/cat ` untuk mendapatkan gambar kucing acak.\nKetik `/guide` untuk menampilkan panduan ini.\nJangan lupa untuk membuat teks channel \n`#daily-cat` agar aku bisa secara otomatis mengirimkan pap \nuntukmu setiap hari-nya 💗\n\nAyo bersenang-senang denganku 😺\n\n\n> [Website](https://dailycat.is-a.fun)  |  [Server Support](https://discord.gg/WFfjrQxnfH) | [Author](https://lrmn.is-a.dev) \n\n> [Privacy Policy](https://dailycat.is-a.fun/privacy)  |  [Terms Of Service](https://dailycat.is-a.fun/terms) | [Legal Notice](https://dailycat.is-a.fun/legal)")
+        .setImage("https://cdn.discordapp.com/attachments/1132042597796417627/1151487192028434584/daolycatsss.png")
         .setThumbnail("https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256")
         .setColor("#9ff500")
         .setFooter({
@@ -67,7 +74,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         })
         .setTimestamp();
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], ephemeral: false });
       } catch (error) {
         console.error(error);
         await interaction.followUp("Maaf aku sedang sibuk, nanti balik lagi ya.");
@@ -168,8 +175,8 @@ cron.schedule(
     const channels = dailyRandomCatChannels();
     const attachment = await getRandomCatAttachmentBuilder();
     const currentHour = new Date().getHours();
-
     let greeting = "";
+    
     if (currentHour === 8) {
       greeting = "Semangat!";
     } else if (currentHour === 16) {
@@ -177,7 +184,7 @@ cron.schedule(
     } else if (currentHour === 21) {
       greeting = "Jangan lupa istirahat!";
     }
-
+    
     const message = `${greeting} Meooow for u 💗`;
 
     for (const channel of channels) {
