@@ -1,6 +1,6 @@
 {
   "name": "daily-cat",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "DailyCAT adalah bot Discord yang menyenangkan dan menggemaskan yang mencerahkan harimu dengan gambar kucing acak setiap hari. Siap-siap untuk terpesona oleh kucing-kucing berbulu!",
   "main": "index.js",
   "scripts": {

@@ -3,7 +3,7 @@
 </div>
 
 
-<h1 align="center">🐱 DailyCAT Bot Discord 🐾</h1>
+<h1 align="center">Simple 🐱 DailyCAT Bot Discord 🐾</h1>
 <p align="center">
   <img alt="Versi" src="https://img.shields.io/badge/versi-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/lrmn7/daily-cat/blob/main/LICENSE" target="_blank">
@@ -31,6 +31,8 @@ DailyCAT adalah bot Discord yang menyenangkan dan menggemaskan yang mencerahkan 
 DISCORD_BOT_TOKEN=
 DISCORD_BOT_CLIENT_ID=
 ENVIRONMENT=PRODUCTION or DEVELOPMENT
+API_KEY= https://api-ninjas.com/ (untuk random quote)
+PREFIX=dc
 ```
 ## Instal
 ```sh

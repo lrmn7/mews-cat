@@ -3,3 +3,5 @@ node_modules
 .env.local
 .env.production
 .env.development
+dist
+index.examples.ts
