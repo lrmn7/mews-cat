@@ -48,16 +48,10 @@ pnpm start
 ## Penggunaan
 Setelah DailyCAT berada di servermu, ia akan secara otomatis mengirimkan gambar kucing acak ke saluran yang ditentukan pada waktu tertentu. Kamu juga bisa menggunakan perintah `/cat` & `/guide` untuk segera mendapatkan gambar kucing sesuai permintaan!
 
-## Author Bot
-
-👤 **L RMN**
-
-* Website: https://lrmn.is-a.dev
-* Github: [@lrmn7](https://github.com/lrmn7)
-
 ## Thanks to
 
 * Website: https://cataas.com/
+* Website: https://api-ninjas.com/
 
 ## Support
 
