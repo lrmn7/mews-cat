@@ -62,5 +62,5 @@ Beri ⭐️ jika proyek ini membantumu!
 </a>
 
 <div align="center">
-  <img width="80%" src="https://cdn.discordapp.com/attachments/1098969636306960465/1147516305587576872/Screenshot_2023-09-02_200149.png">
+  <img width="80%" src="https://i.imgur.com/A58MosE.jpg">
 </div> 
