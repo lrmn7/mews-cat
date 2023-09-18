@@ -5,7 +5,7 @@
 
 <h1 align="center">Simple 🐱 DailyCAT Bot Discord 🐾</h1>
 <p align="center">
-  <img alt="Versi" src="https://img.shields.io/badge/versi-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Versi" src="https://img.shields.io/badge/versi-2.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/lrmn7/daily-cat/blob/main/LICENSE" target="_blank">
     <img alt="Lisensi: MIT" src="https://img.shields.io/badge/Lisensi-MIT-kuning.svg" />
   </a>
