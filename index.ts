@@ -130,7 +130,7 @@ client.on("messageCreate", async (message) => {
       .setThumbnail("https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256")
       .setColor("#00b0f4")
       .setFooter({
-        text: "Meooow for u 💗",
+        text: "© 2023 DailyCAT ✨. All rights reserved.",
         iconURL: "https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256",
       })
       .setTimestamp();
@@ -293,8 +293,8 @@ cron.schedule(
         const quote = await getQuoteFromAPI(category);
 
         const footer = {
-          text: "Meooow for u 💗",
-          iconURL: "https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256", // Ganti URL_GAMBAR_ICON dengan URL gambar yang ingin Anda gunakan
+          text: "© 2023 DailyCAT ✨. All rights reserved.",
+          iconURL: "https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256",
         };
 
         // Buat objek Embed
@@ -302,7 +302,8 @@ cron.schedule(
           .setColor("#e3bc9d")
           .setDescription(`${quote}`)
           .setImage(`attachment://${attachment.name}`)
-          .setFooter(footer);
+          .setFooter(footer)
+          .setTimestamp(); // Menambahkan timestamp
 
         // Kirim pesan dengan objek Embed
         await channel.send({ embeds: [embed], files: [attachment] });
