@@ -282,7 +282,7 @@ async function getQuoteFromAPI(category: string) {
 
 // Schedule untuk mengirim pesan dan gambar pada waktu-waktu tertentu
 cron.schedule(
-  "0 8,16,21 * * *", // Tetapkan jadwal cron ke jam 08:00, 16:00, dan 21:00 WIB
+  "0 12 * * *", // Tetapkan jadwal cron ke 12:00 Wib setiap hari
   async () => {
     const channels = dailyRandomCatChannels();
     const attachment = await getRandomCatAttachmentBuilder();

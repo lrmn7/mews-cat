@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "tsup ./index.ts && node dist/index.js",
-    "dev": "tsx ./index.ts"
+    "dev": "tsx ./index.ts",
+    "dockerbuild": "docker build -t lrmn/dailycat:latest .",
+    "dockerpush": "docker push lrmn/dailycat:latest"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
