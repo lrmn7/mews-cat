@@ -57,7 +57,7 @@ Setelah DailyCAT berada di servermu, ia akan secara otomatis mengirimkan gambar 
 
 Beri ⭐️ jika proyek ini membantumu!
 
-<a href="https://www.patreon.com/LRMN">
+<a href="https://www.patreon.com/mewwme">
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
