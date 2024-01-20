@@ -12,7 +12,10 @@ import {
   EmbedBuilder,
   SlashCommandBuilder,
   ActivityType,
-  TextChannel
+  TextChannel,
+  ButtonBuilder,
+  ButtonStyle,
+  ActionRowBuilder
 } from "discord.js";
 import cron from "node-cron";
 import { z } from "zod";
@@ -31,42 +34,36 @@ const client = new Client({
   intents: ["Guilds", "GuildMessages", "MessageContent"]
 });
 
-const PREFIX = process.env.PREFIX || "cat"; // Gunakan nilai dari variabel lingkungan, jika tidak ada, gunakan "cat"
+// Events
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isCommand()) return;
 
-client.on("messageCreate", async (message) => {
-  if (message.author.bot) return; // Ignore messages from bots
+  const { commandName } = interaction;
 
-  const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-  const command = args.shift()?.toLowerCase();
-
-  if (!command) return;
-
-  if (command === "cat") {
+  if (commandName === "cat") {
     try {
       // Menambahkan notifikasi bot typing
-      await message.channel.sendTyping();
+      await interaction.deferReply();
 
       const imageAttachment = await getRandomCatAttachmentBuilder();
       const catEmbed = {
-        title: "Pap untukmu 😺",
-        color: 0xe3bc9d,
+        title: "For you 😺",
+        color: 0xf4e0c7,
         image: { url: `attachment://${imageAttachment.name}` },
         footer: {
-          text: `Requested by ${message.author.tag}`,
-          iconURL: message.author.displayAvatarURL()
+          text: `Requested by ${interaction.user.tag}`,
+          iconURL: interaction.user.displayAvatarURL()
         },
-        timestamp: new Date().toISOString() // Ubah ke string ISO
       };
 
-      message.channel.send({ embeds: [catEmbed], files: [imageAttachment] });
+      interaction.editReply({ embeds: [catEmbed], files: [imageAttachment] });
     } catch (error) {
       console.error(error);
-      message.channel.send("Maaf, ada masalah saat mengirim gambar kucing.");
+      interaction.followUp("Sorry, there was a problem sending the cat picture.");
     }
-  } else if (command === "catfact") {
+  } else if (commandName === "catfact") {
     try {
-      // Menambahkan notifikasi bot typing
-      await message.channel.sendTyping();
+      await interaction.deferReply();
 
       const [imageAttachment, fact] = await Promise.all([
         getRandomCatAttachmentBuilder(),
@@ -76,81 +73,66 @@ client.on("messageCreate", async (message) => {
       const catfactEmbed = {
         title: "Cat Fact",
         description: `${fact}`,
-        color: 0xe3bc9d,
+        color: 0xf4e0c7,
         image: { url: `attachment://${imageAttachment.name}` },
         footer: {
-          text: `Requested by ${message.author.tag}`,
-          iconURL: message.author.displayAvatarURL()
+          text: `Requested by ${interaction.user.tag}`,
+          iconURL: interaction.user.displayAvatarURL()
         },
-        timestamp: new Date().toISOString() // Ubah ke string ISO
       };
 
-      message.channel.send({
+      interaction.editReply({
         embeds: [catfactEmbed],
         files: [imageAttachment]
       });
     } catch (error) {
       console.error(error);
-      message.channel.send(
-        "Maaf, ada masalah saat mengirim gambar kucing dan faktanya."
+      interaction.followUp(
+        "Sorry, there was a problem sending the picture of the cat and the facts."
       );
     }
-  } else if (command === "help") {
+  } else if (commandName === "help") {
     try {
-      // Menambahkan notifikasi bot typing
-      await message.channel.sendTyping();
+
+      await interaction.deferReply();
 
       const embed = new EmbedBuilder()
       .setAuthor({
-        name: "DailyCAT ✨",
-        url: "https://dailycat.is-a.fun/",
-        iconURL: "https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256",
+        name: `${interaction.guild!.members.me!.displayName} Mewcats!`,
+        url: `https://discord.com/api/oauth2/authorize?client_id=${
+          client.user!.id
+        }&permissions=8&scope=bot%20applications.commands`,
+        iconURL: interaction.guild!.members.me!.displayAvatarURL() as string,
       })
       .setTitle("Cute and Cuddly: Meow Your Way to Happiness")
-      .setURL("https://dailycat.is-a.fun/")
-      .setDescription("Aku adalah bot yang suka mengirimkan gambar kucing lucu kepadamu. Berikut adalah beberapa perintah yang bisa kamu gunakan:\n\n**Perintah Slash commands**\n\n`/help` untuk menampilkan panduan ini.\n\n`/cat`  untuk mendapatkan gambar kucing acak menggemaskan.\n\n`/catfact` gambar kucing acak dan fakta-nya.\n\nJangan lupa untuk membuat teks channel\n**#daily-cat** agar aku bisa secara otomatis mengirimkan pap\nuntukmu setiap hari-nya  💗\n\nOhya kamu pun bisa menggunakan prefix default: **dc**\nCukup mengetik **dc help** | **dc cat** | **dc catfact**\nBerinteraksi denganku menjadi lebih mudah.\n\n*Kritik dan saran boleh hubungi pengembangku [klik disini](https://discord.com/users/742457036914294855)*\n\nAyo bersenang-senang denganku 😺")
-      .addFields(
-        {
-          name: "Website",
-          value: "[Visit Website](https://dailycat.is-a.fun/)",
-          inline: true
-        },
-        {
-          name: "Invite",
-          value: "[Invite me](https://discord.com/api/oauth2/authorize?client_id=1145410245229809747&permissions=551903423504&scope=applications.commands%20bot)",
-          inline: true
-        },
-        {
-          name: "Support",
-          value: "[Join Discord Support](https://discord.gg/WFfjrQxnfH)",
-          inline: true
-        },
-      )
-      .setImage("https://cdn.discordapp.com/attachments/1098969636306960465/1153380177624174592/dailycatts.png")
-      .setThumbnail("https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256")
-      .setColor("#00b0f4")
-      .setFooter({
-        text: "© 2023 DailyCAT ✨. All rights reserved.",
-        iconURL: "https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256",
-      })
-      .setTimestamp();
+      .setDescription("A very simple cat bot. All you have to do is create a text channel with the keyword `cat`, and the bot will send you random cat pictures once a day to that channel.\n\nAdditional commands:\n`/cat` - Sends a random cat picture\n`/catfact` - Sends a random cat picture and fact")
+      .setColor("#f4e0c7")
 
-      message.channel.send({ embeds: [embed] });
+      const button = new ActionRowBuilder<ButtonBuilder>()
+      .addComponents(
+        new ButtonBuilder()
+          .setLabel("Invite Me")
+          .setStyle(ButtonStyle.Link)
+          .setURL(client.generateInvite({ scopes: [OAuth2Scopes.Bot] }))
+      )
+      .addComponents(
+        new ButtonBuilder()
+          .setLabel("Server Support")
+          .setStyle(ButtonStyle.Link)
+          .setURL("https://discord.gg/6EXgrmtkPX")
+      )
+      .addComponents(
+        new ButtonBuilder()
+          .setLabel("Soruce code")
+          .setStyle(ButtonStyle.Link)
+          .setURL("https://github.com/mewwme/daily-cat")
+      );
+
+      interaction.editReply({ embeds: [embed], components: [button] });
     } catch (error) {
       console.error(error);
-      message.channel.send("Maaf aku sedang sibuk, nanti balik lagi ya.");
+      interaction.followUp("Sorry I'm busy, come back later.");
     }
-  }
-});
-
-client.on(Events.ChannelCreate, async (channel) => {
-  const channelName = channel.name.toLowerCase();
-
-  if (channelName.includes("daily-cat") && channel.isTextBased()) {
-    const attachment = await getRandomCatAttachmentBuilder();
-    channel.send({
-      files: [attachment]
-    });
   }
 });
 
@@ -181,15 +163,15 @@ const commands: SlashCommandBuilder[] = [];
 
 const catCommand = new SlashCommandBuilder()
   .setName("cat")
-  .setDescription("Meooow! Pap untukmu");
+  .setDescription("Meooow! Picture for you");
 
 const catfactCommand = new SlashCommandBuilder()
   .setName("catfact")
-  .setDescription("Meooow! Pap dan fact untukmu");
+  .setDescription("Meooow! Picture and fact for you");
 
 const helpCommand = new SlashCommandBuilder()
   .setName("help")
-  .setDescription("Menampilkan perintah yang ada.");
+  .setDescription("Display existing commands.");
 
 commands.push(catCommand);
 commands.push(catfactCommand);
@@ -242,11 +224,11 @@ async function fetchCatFact() {
   }
 }
 
-function dailyRandomCatChannels(): TextChannel[] {
+function dailyRandomCatChannels() {
   const channels = client.channels.cache.filter((channel) => {
     if (!channel.isTextBased()) return false;
     if (!("send" in channel)) return false;
-    if ("name" in channel) return channel.name.includes("daily-cat");
+    if ("name" in channel) return channel.name.includes("cat");
 
     return false;
   }) as Collection<string, TextChannel>;
@@ -254,10 +236,9 @@ function dailyRandomCatChannels(): TextChannel[] {
   return channels.map((channel) => channel);
 }
 
-
-// Fungsi untuk mendapatkan kutipan dari API
+// Function to get a quote from the API
 async function getQuoteFromAPI(category: string) {
-  return new Promise<string>(async (resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${category}`, {
         headers: {
@@ -280,9 +261,9 @@ async function getQuoteFromAPI(category: string) {
   });
 }
 
-// Schedule untuk mengirim pesan dan gambar pada waktu-waktu tertentu
+// Schedule to send messages and images at specific times
 cron.schedule(
-  "0 12 * * *", // Tetapkan jadwal cron ke 12:00 Wib setiap hari
+  "0 9,21 * * *", // Set cron schedule to 09:00 AM and 12:00 AM every day
   async () => {
     const channels = dailyRandomCatChannels();
     const attachment = await getRandomCatAttachmentBuilder();
@@ -292,18 +273,15 @@ cron.schedule(
         const category = 'love';
         const quote = await getQuoteFromAPI(category);
 
-        const footer = {
-          text: "© 2023 DailyCAT ✨. All rights reserved.",
-          iconURL: "https://cdn.discordapp.com/avatars/1145410245229809747/51b3da2e42a405393b7ada9a1d93da0f.webp?size=1024&width=0&height=256",
-        };
-
         // Buat objek Embed
         const embed = new EmbedBuilder()
-          .setColor("#e3bc9d")
+          .setColor("#f4e0c7")
           .setDescription(`${quote}`)
           .setImage(`attachment://${attachment.name}`)
-          .setFooter(footer)
-          .setTimestamp(); // Menambahkan timestamp
+          .setFooter({
+            text: "Cute and Cuddly: Meow Your Way to Happiness",
+            iconURL: client.user!.displayAvatarURL()
+          });
 
         // Kirim pesan dengan objek Embed
         await channel.send({ embeds: [embed], files: [attachment] });
@@ -318,4 +296,3 @@ cron.schedule(
 );
 
 client.login(env.DISCORD_BOT_TOKEN);
-
