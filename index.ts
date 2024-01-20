@@ -98,7 +98,7 @@ client.on("interactionCreate", async (interaction) => {
 
       const embed = new EmbedBuilder()
       .setAuthor({
-        name: `${interaction.guild!.members.me!.displayName} Mewcats!`,
+        name: `${interaction.guild!.members.me!.displayName} - Welcome!`,
         url: `https://discord.com/api/oauth2/authorize?client_id=${
           client.user!.id
         }&permissions=8&scope=bot%20applications.commands`,
