@@ -1,7 +1,7 @@
 {
-  "name": "daily-cat",
+  "name": "mews-cats",
   "version": "2.0.0",
-  "description": "DailyCAT adalah bot Discord yang menyenangkan dan menggemaskan yang mencerahkan harimu dengan gambar kucing acak setiap hari. Siap-siap untuk terpesona oleh kucing-kucing berbulu!",
+  "description": "Cute and Cuddly: Meow Your Way to Happiness.",
   "main": "index.js",
   "scripts": {
     "start": "tsup ./index.ts && node dist/index.js",

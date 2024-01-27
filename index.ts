@@ -125,7 +125,7 @@ client.on("interactionCreate", async (interaction) => {
         new ButtonBuilder()
           .setLabel("Soruce code")
           .setStyle(ButtonStyle.Link)
-          .setURL("https://github.com/mewwme/daily-cat")
+          .setURL("https://github.com/mewwme/mews-cat")
       );
 
       interaction.editReply({ embeds: [embed], components: [button] });
