@@ -1,5 +1,5 @@
 # Mew's Radio
-![bot logo](/assets/mewradio.png)
+![bot logo](/mewcats.png)
 <br />
 **Cute and Cuddly: Meow Your Way to Happiness.**
 <br />
