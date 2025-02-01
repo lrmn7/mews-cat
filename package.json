@@ -3,9 +3,9 @@
   "name": "minionlab",
   "version": "1.0.0",
   "description": "Mine Data, Fuel AI, Earn Rewards Join the Stream AI Revolution",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node index.js"
   },
   "author": "@zlkcyber",
   "license": "MIT",

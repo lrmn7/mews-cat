@@ -4,10 +4,11 @@ import log from './src/logger.js';
 import banner from './src/banner.js';
 import fetch from 'node-fetch';
 import { newAgent } from './src/scripts.js';
-import config from './src/config.js';
 
-const { PROXIES_FILE, USERS_FILE, MAX_GATEWAYS } = config;
+const PROXIES_FILE = 'proxy.txt'
+const USERS_FILE = 'uuid.txt'
 const SERVER = "gw0.streamapp365.com";
+const MAX_GATEWAYS = 95;
 
 async function dispatch(dev, user, proxy) {
     const agent = newAgent(proxy);
