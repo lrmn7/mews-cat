@@ -1,39 +1,66 @@
-# Mew's Radio
-![bot logo](/mewcats.png)
-<br />
-**Cute and Cuddly: Meow Your Way to Happiness.**
-<br />
-**A very simple cat bot. All you have to do is create a text channel with the keyword `cat`, and the bot will send you random cat pictures once a day to that channel.**
-<br />
-<br />
+# 🚀 MinionLab Depin  
+**Mine Data, Fuel AI, Earn Rewards – Join the MinionLab Revolution!**  
 
-## Installation
+![MinionLab](./assets/lrmn-minionlab.jpeg)  
 
-1. Clone this repository or download the code.
-2. Install dependencies using your preferred package manager:
+## 🌐 Official Links  
+🔗 **Website:** [MinionL](https://ref.minionlab.io/?referralCode=VJKKXCPU)  
+🐦 **Twitter/X:** [@MinionLabAI](https://x.com/MinionLabAI)  
 
-### Configure your bot token in the .env file:
+---  
 
-```
-DISCORD_BOT_TOKEN=
-DISCORD_BOT_CLIENT_ID=
-ENVIRONMENT=PRODUCTION or DEVELOPMENT
-API_KEY= https://api-ninjas.com/ (random quote)
-```
-## Instal
-```sh
-pnpm install
-```
+## ✨ Features  
 
-## Running
+✅ **Auto Create Connections/Devices**  
+✅ **Support Multiple Accounts**  
+✅ **Supports Proxy** (Format: `http://ip:port` or `http://username:password@ip:port`)  
+✅ **Maximum 100 devices (same IP allowed) per Account** 
 
-```sh
-pnpm start
-```
+---  
 
-## Thanks to
+## 📌 Requirements  
 
-* Website: [Cataas](https://cataas.com/)
-* Website: [API Ninjas](https://api-ninjas.com/)
+🔹 **Node.js**: Ensure Node.js is installed.  
+🔹 **NPM**: Ensure npm is installed.  
+🔹 **MinionLab ID**: Follow the instructions below to retrieve your ID.  
 
+1️⃣ **Create an MinionLab account**: [Sign Up Here](https://ref.minionlab.io/?referralCode=VJKKXCPU)  
+2️⃣ **Open Developer Tools** (`F12`) after logging in.  
+3️⃣ **Go to the "Network" tab** and search for **MyInfo**.  
+4️⃣ **Copy your ID** from the response.  
 
+![Get UUID](./assets/myinfo.png)  
+
+---  
+
+## ⚡ Setup  
+
+### 1️⃣ Clone the repository  
+```bash  
+git clone https://github.com/lrmn7/minionlab.git  
+cd minionlab  
+```  
+
+### 2️⃣ Install dependencies  
+```bash  
+npm install  
+```  
+
+### 3️⃣ Add User IDs  
+Edit `uuid.txt` and paste your user IDs (one per line):  
+```bash  
+nano uuid.txt  
+```  
+
+### 4️⃣ Add Proxy List  
+Edit `proxy.txt` and paste proxies (one per line):  
+```bash  
+nano proxy.txt  
+```  
+
+### 5️⃣ Run the script  
+```bash  
+npm run start  
+```  
+
+🔥 **Start mining data and earning rewards with MINION LAB AI today!** 🚀  
