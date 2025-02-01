@@ -1,10 +1,11 @@
 import fetch from 'node-fetch';
 import WebSocket from 'ws';
 import log from './logger.js';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 import { newAgent } from './scripts.js';
 
 class Task {
-    constructor(taskid, method, url, headers, body, script, timeout, gateway, proxy = null) {
+    constructor(taskid, method, url, headers, body, script, debug, timeout, gateway, proxy = null) {
         this.proxy = proxy;
         this.agent = this.proxy ? newAgent(proxy) : null;
         this.taskid = taskid;
@@ -69,7 +70,7 @@ class CustomError extends Error {
     }
 }
 
-const MAX_CONNECTIONS = 100;
+const MAX_CONNECTIONS = 32;
 const PING_INTERVAL = 20 * 1000;
 const CLEAR_INTERVAL = 30 * 1000;
 const CONNECTION_TIMEOUT = 300 * 1000;
@@ -281,4 +282,3 @@ class Gateway {
 }
 
 export { Gateway, Task, CustomError };
-
